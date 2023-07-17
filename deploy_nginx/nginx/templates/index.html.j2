@@ -1,0 +1,35 @@
+<!doctype html>
+
+<html>
+
+<head>
+</head>
+
+<body>
+    <h1>Hello there Obi-Wan Kenobi!</h1>
+    <table>
+        <tr>
+            <th>Parameter</th>
+            <th>Value</th>
+        </tr>
+        <tr>
+            <td>CPU</td>
+            <td>{{ ansible_processor[0] }}</td>
+        <tr>
+            <td>RAM</td>
+            <td>{{ ansible_memtotal_mb }} Mb</td>
+        </tr>
+        <tr>
+            <td>IP:</td>
+            <td>{{ ansible_all_ipv4_addresses[0] }}</td>
+        </tr>
+        {%- for device in my_devices  %}
+        <tr>
+          <td>HDD: {{ device }}</td>
+          <td>{{ ansible_devices[device].size }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+</body>
+
+</html>

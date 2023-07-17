@@ -1,0 +1,26 @@
+---
+# tasks file for nginx
+- name: "Ensure that nginx is installed."
+  apt: 
+    name:
+      - nginx
+    state: present
+
+- set_fact:
+    my_devices: "{{ ansible_devices.keys()|
+                  reject('match', '^loop(.*)$')|
+                  list }}"
+
+- name: "Add Index page."
+  template:
+    src: "index.html.j2"
+    dest: "/var/www/html/index.html"
+    owner: root
+    group: root
+    mode: 0755
+  notify: "Restart nginx"
+
+- name: "Wait for port {{ nginx_port }} to become open on the host, don't start checking for 10 seconds"
+  wait_for:
+    port: "{{ nginx_port }}"
+    delay: 5

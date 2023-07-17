@@ -1,0 +1,3 @@
+---
+# defaults file for nginx
+destin_file: /etc/nginx/sites-available

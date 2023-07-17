@@ -1,0 +1,8 @@
+#cloud-config
+users:
+  - name: egushchin
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAJw5qmPMY6PAeaB39fk8NnZ2gTGkJzA0qlV2J9flbEM egushchin@thumbtack.net
